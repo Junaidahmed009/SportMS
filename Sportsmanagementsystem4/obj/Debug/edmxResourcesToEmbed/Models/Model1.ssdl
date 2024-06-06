@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SportsManagementDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="description" Type="varchar(max)" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="match_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="eventname" Type="varchar" MaxLength="100" />
+    <Property Name="year" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="start_date" Type="date" />
+    <Property Name="end_date" Type="date" />
+  </EntityType>
+  <EntityType Name="favourites">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="match_id" Type="int" />
+  </EntityType>
+  <EntityType Name="gallery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="path" Type="varchar" MaxLength="1000" />
+    <Property Name="match_id" Type="int" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="Match">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_half_score" Type="varchar" MaxLength="50" />
+    <Property Name="second_half_score" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="varchar" MaxLength="20" />
+    <Property Name="sport_id" Type="int" />
+    <Property Name="round" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="reg_number" />
+    </Key>
+    <Property Name="name" Type="varchar" MaxLength="100" />
+    <Property Name="reg_number" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Playerteaminfo">
+    <Key>
+      <PropertyRef Name="player_regno" />
+      <PropertyRef Name="sport_id" />
+    </Key>
+    <Property Name="player_regno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="sport_id" Type="int" Nullable="false" />
+    <Property Name="team_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="team1_id" Type="int" />
+    <Property Name="team2_id" Type="int" />
+    <Property Name="match_id" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="time" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="Sport">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="cric_over" Type="int" />
+    <Property Name="cric_ball" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="event_id" Type="int" />
+    <Property Name="rule" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="semester" Type="varchar" MaxLength="20" />
+    <Property Name="isRegistered" Type="int" />
+    <Property Name="no_players" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="sport_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="registration_no" Type="varchar" MaxLength="100" />
+    <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="venue">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" />
+    <Property Name="schedule_id" Type="int" />
+  </EntityType>
+  <Association Name="FK__Comment__match_i__656C112C">
+    <End Role="Match" Type="Self.Match" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Match">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="match_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comment__user_id__6477ECF3">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Event__user_id__5070F446">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__favourite__match__6C190EBB">
+    <End Role="Match" Type="Self.Match" Multiplicity="0..1" />
+    <End Role="favourites" Type="Self.favourites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Match">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="favourites">
+        <PropertyRef Name="match_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__favourite__user___6B24EA82">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="favourites" Type="Self.favourites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="favourites">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__gallery__match_i__68487DD7">
+    <End Role="Match" Type="Self.Match" Multiplicity="0..1" />
+    <End Role="gallery" Type="Self.gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Match">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="gallery">
+        <PropertyRef Name="match_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Match__sport_id__619B8048">
+    <End Role="Sport" Type="Self.Sport" Multiplicity="0..1" />
+    <End Role="Match" Type="Self.Match" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sport">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Match">
+        <PropertyRef Name="sport_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Playertea__playe__02FC7413">
+    <End Role="Player" Type="Self.Player" Multiplicity="1" />
+    <End Role="Playerteaminfo" Type="Self.Playerteaminfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="reg_number" />
+      </Principal>
+      <Dependent Role="Playerteaminfo">
+        <PropertyRef Name="player_regno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Playertea__sport__04E4BC85">
+    <End Role="Sport" Type="Self.Sport" Multiplicity="1" />
+    <End Role="Playerteaminfo" Type="Self.Playerteaminfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sport">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Playerteaminfo">
+        <PropertyRef Name="sport_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Playertea__team___03F0984C">
+    <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+    <End Role="Playerteaminfo" Type="Self.Playerteaminfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Playerteaminfo">
+        <PropertyRef Name="team_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Schedule__match___76969D2E">
+    <End Role="Match" Type="Self.Match" Multiplicity="0..1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Match">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="match_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Schedule__team1___74AE54BC">
+    <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="team1_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Schedule__team2___75A278F5">
+    <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="team2_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sport__event_id__5441852A">
+    <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Sport" Type="Self.Sport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sport">
+        <PropertyRef Name="event_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sport__user_id__534D60F1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Sport" Type="Self.Sport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sport">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Team__sport_id__5BE2A6F2">
+    <End Role="Sport" Type="Self.Sport" Multiplicity="0..1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sport">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="sport_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Team__user_id__5AEE82B9">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Team" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__venue__schedule___797309D9">
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="0..1" />
+    <End Role="venue" Type="Self.venue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="venue">
+        <PropertyRef Name="schedule_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SportsManagementDBModelStoreContainer">
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="favourites" EntityType="Self.favourites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="gallery" EntityType="Self.gallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Match" EntityType="Self.Match" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Playerteaminfo" EntityType="Self.Playerteaminfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sport" EntityType="Self.Sport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="venue" EntityType="Self.venue" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Comment__match_i__656C112C" Association="Self.FK__Comment__match_i__656C112C">
+      <End Role="Match" EntitySet="Match" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comment__user_id__6477ECF3" Association="Self.FK__Comment__user_id__6477ECF3">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Event__user_id__5070F446" Association="Self.FK__Event__user_id__5070F446">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="FK__favourite__match__6C190EBB" Association="Self.FK__favourite__match__6C190EBB">
+      <End Role="Match" EntitySet="Match" />
+      <End Role="favourites" EntitySet="favourites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__favourite__user___6B24EA82" Association="Self.FK__favourite__user___6B24EA82">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="favourites" EntitySet="favourites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__gallery__match_i__68487DD7" Association="Self.FK__gallery__match_i__68487DD7">
+      <End Role="Match" EntitySet="Match" />
+      <End Role="gallery" EntitySet="gallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Match__sport_id__619B8048" Association="Self.FK__Match__sport_id__619B8048">
+      <End Role="Sport" EntitySet="Sport" />
+      <End Role="Match" EntitySet="Match" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Playertea__playe__02FC7413" Association="Self.FK__Playertea__playe__02FC7413">
+      <End Role="Player" EntitySet="Player" />
+      <End Role="Playerteaminfo" EntitySet="Playerteaminfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Playertea__sport__04E4BC85" Association="Self.FK__Playertea__sport__04E4BC85">
+      <End Role="Sport" EntitySet="Sport" />
+      <End Role="Playerteaminfo" EntitySet="Playerteaminfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Playertea__team___03F0984C" Association="Self.FK__Playertea__team___03F0984C">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Playerteaminfo" EntitySet="Playerteaminfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Schedule__match___76969D2E" Association="Self.FK__Schedule__match___76969D2E">
+      <End Role="Match" EntitySet="Match" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Schedule__team1___74AE54BC" Association="Self.FK__Schedule__team1___74AE54BC">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Schedule__team2___75A278F5" Association="Self.FK__Schedule__team2___75A278F5">
+      <End Role="Team" EntitySet="Team" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sport__event_id__5441852A" Association="Self.FK__Sport__event_id__5441852A">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="Sport" EntitySet="Sport" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sport__user_id__534D60F1" Association="Self.FK__Sport__user_id__534D60F1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Sport" EntitySet="Sport" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Team__sport_id__5BE2A6F2" Association="Self.FK__Team__sport_id__5BE2A6F2">
+      <End Role="Sport" EntitySet="Sport" />
+      <End Role="Team" EntitySet="Team" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Team__user_id__5AEE82B9" Association="Self.FK__Team__user_id__5AEE82B9">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Team" EntitySet="Team" />
+    </AssociationSet>
+    <AssociationSet Name="FK__venue__schedule___797309D9" Association="Self.FK__venue__schedule___797309D9">
+      <End Role="Schedule" EntitySet="Schedule" />
+      <End Role="venue" EntitySet="venue" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

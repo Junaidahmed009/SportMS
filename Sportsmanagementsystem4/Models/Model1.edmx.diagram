@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="834f92f1cb624af38e8951f5f1ed51d9" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="SportsManagementDBModel.Comment" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.Event" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.favourite" Width="1.5" PointX="9.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.gallery" Width="1.5" PointX="9.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.Match" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.Player" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.Playerteaminfo" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.Schedule" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.Sport" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.Team" Width="1.5" PointX="10.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.User" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsManagementDBModel.venue" Width="1.5" PointX="15" PointY="11.375" IsExpanded="true" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Comment__match_i__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Comment__user_id__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Event__user_id__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Sport__event_id__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__favourite__match__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__favourite__user___6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__gallery__match_i__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Match__sport_id__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Schedule__match___76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Playertea__playe__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Playertea__sport__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Playertea__team___03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Schedule__team1___74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Schedule__team2___75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__venue__schedule___797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Sport__user_id__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Team__sport_id__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="SportsManagementDBModel.FK__Team__user_id__5AEE82B9" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
