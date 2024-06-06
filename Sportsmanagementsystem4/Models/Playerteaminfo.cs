@@ -9,7 +9,7 @@
 
 namespace Sportsmanagementsystem4.Models
 {
-    using System;
+    using System;using Newtonsoft.Json;
     using System.Collections.Generic;
     
     public partial class Playerteaminfo
@@ -18,8 +18,8 @@ namespace Sportsmanagementsystem4.Models
         public int sport_id { get; set; }
         public Nullable<int> team_id { get; set; }
     
-        public virtual Player Player { get; set; }
-        public virtual Sport Sport { get; set; }
-        public virtual Team Team { get; set; }
+        [JsonIgnore] public virtual Player Player { get; set; }
+        [JsonIgnore] public virtual Sport Sport { get; set; }
+        [JsonIgnore] public virtual Team Team { get; set; }
     }
 }

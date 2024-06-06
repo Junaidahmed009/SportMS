@@ -193,5 +193,42 @@ namespace Sportsmanagementsystem4.Controllers
 
             }
         }
+
+
+
+
+
+        [HttpGet]
+        public HttpResponseMessage DeletePlayer(Player player)
+        {
+            // Check if player ID and password are provided
+            if (string.IsNullOrEmpty(player.name) || string.IsNullOrEmpty(player.reg_number))
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Both player name and reg-number are required.");
+            }
+
+            try
+            {
+                // Find player in the database by player ID
+                var playerInDb = db.Players.FirstOrDefault(p => p.name == player.name);
+
+                // Check if player exists and password matches
+                if (playerInDb != null && playerInDb.reg_number == player.reg_number)
+                {
+                    
+
+                    return Request.CreateResponse(HttpStatusCode.OK, "Player data already saved in db.");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, "Invalid player ID or password.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
     }
 }

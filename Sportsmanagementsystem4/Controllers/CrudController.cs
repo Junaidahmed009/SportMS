@@ -1,11 +1,10 @@
-﻿using Sportsmanagementsystem4.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using Sportsmanagementsystem4.Models;
 
 namespace Sportsmanagementsystem4.Controllers
 {

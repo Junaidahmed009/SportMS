@@ -9,7 +9,7 @@
 
 namespace Sportsmanagementsystem4.Models
 {
-    using System;
+    using System;using Newtonsoft.Json;
     using System.Collections.Generic;
     
     public partial class Schedule
@@ -27,10 +27,10 @@ namespace Sportsmanagementsystem4.Models
         public Nullable<System.DateTime> date { get; set; }
         public Nullable<System.TimeSpan> time { get; set; }
     
-        public virtual Match Match { get; set; }
-        public virtual Team Team { get; set; }
-        public virtual Team Team1 { get; set; }
+        [JsonIgnore] public virtual Match Match { get; set; }
+        [JsonIgnore] public virtual Team Team { get; set; }
+        [JsonIgnore] public virtual Team Team1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<venue> venues { get; set; }
+        [JsonIgnore] public virtual ICollection<venue> venues { get; set; }
     }
 }

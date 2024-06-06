@@ -9,7 +9,7 @@
 
 namespace Sportsmanagementsystem4.Models
 {
-    using System;
+    using System;using Newtonsoft.Json;
     using System.Collections.Generic;
     
     public partial class Player
@@ -25,6 +25,6 @@ namespace Sportsmanagementsystem4.Models
         public string role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Playerteaminfo> Playerteaminfoes { get; set; }
+        [JsonIgnore] public virtual ICollection<Playerteaminfo> Playerteaminfoes { get; set; }
     }
 }

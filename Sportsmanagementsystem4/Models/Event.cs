@@ -9,7 +9,7 @@
 
 namespace Sportsmanagementsystem4.Models
 {
-    using System;
+    using System;using Newtonsoft.Json;
     using System.Collections.Generic;
     
     public partial class Event
@@ -27,8 +27,8 @@ namespace Sportsmanagementsystem4.Models
         public Nullable<System.DateTime> start_date { get; set; }
         public Nullable<System.DateTime> end_date { get; set; }
     
-        public virtual User User { get; set; }
+        [JsonIgnore] public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sport> Sports { get; set; }
+        [JsonIgnore] public virtual ICollection<Sport> Sports { get; set; }
     }
 }

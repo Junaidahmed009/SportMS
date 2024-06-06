@@ -1,4 +1,5 @@
 ﻿using Sportsmanagementsystem4.Models;
+using System.Web.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,15 +69,15 @@ namespace Sportsmanagementsystem4.Controllers
         public HttpResponseMessage UserLogin(User user)
         {
             // Check if name and password are provided
-            if (string.IsNullOrEmpty(user.name) || string.IsNullOrEmpty(user.password))
+            if (string.IsNullOrEmpty(user.registration_no) || string.IsNullOrEmpty(user.password))
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Both name and password are required.");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Both Registration and password are required.");
             }
 
             try
             {
                 // Find user in the database by name
-                var userInDb = db.Users.FirstOrDefault(u => u.name == user.name);
+                var userInDb = db.Users.FirstOrDefault(u => u.registration_no == user.registration_no);
 
                 // Check if user exists and password matches
                 if (userInDb != null && userInDb.password == user.password)
@@ -96,7 +97,7 @@ namespace Sportsmanagementsystem4.Controllers
 
 
 
-        [HttpPost]
+        [HttpGet]
         public HttpResponseMessage DeleteUser(User user)
         {
             // Check if registration number and password are provided
@@ -129,6 +130,8 @@ namespace Sportsmanagementsystem4.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+
 
 
     }

@@ -9,7 +9,7 @@
 
 namespace Sportsmanagementsystem4.Models
 {
-    using System;
+    using System;using Newtonsoft.Json;
     using System.Collections.Generic;
     
     public partial class gallery
@@ -19,6 +19,6 @@ namespace Sportsmanagementsystem4.Models
         public Nullable<int> match_id { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
     
-        public virtual Match Match { get; set; }
+        [JsonIgnore] public virtual Match Match { get; set; }
     }
 }

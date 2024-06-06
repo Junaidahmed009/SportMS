@@ -9,7 +9,7 @@
 
 namespace Sportsmanagementsystem4.Models
 {
-    using System;
+    using System;using Newtonsoft.Json;
     using System.Collections.Generic;
     
     public partial class Match
@@ -31,13 +31,13 @@ namespace Sportsmanagementsystem4.Models
         public string round { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        [JsonIgnore] public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<favourite> favourites { get; set; }
+        [JsonIgnore] public virtual ICollection<favourite> favourites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<gallery> galleries { get; set; }
-        public virtual Sport Sport { get; set; }
+        [JsonIgnore] public virtual ICollection<gallery> galleries { get; set; }
+        [JsonIgnore] public virtual Sport Sport { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Schedule> Schedules { get; set; }
+        [JsonIgnore] public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 
 namespace Sportsmanagementsystem4.Models
 {
-    using System;
+    using System;using Newtonsoft.Json;
     using System.Collections.Generic;
     
     public partial class favourite
@@ -18,7 +18,7 @@ namespace Sportsmanagementsystem4.Models
         public Nullable<int> user_id { get; set; }
         public Nullable<int> match_id { get; set; }
     
-        public virtual Match Match { get; set; }
-        public virtual User User { get; set; }
+        [JsonIgnore] public virtual Match Match { get; set; }
+        [JsonIgnore] public virtual User User { get; set; }
     }
 }

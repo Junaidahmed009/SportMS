@@ -9,7 +9,7 @@
 
 namespace Sportsmanagementsystem4.Models
 {
-    using System;
+    using System;using Newtonsoft.Json;
     using System.Collections.Generic;
     
     public partial class venue
@@ -18,6 +18,6 @@ namespace Sportsmanagementsystem4.Models
         public string name { get; set; }
         public Nullable<int> schedule_id { get; set; }
     
-        public virtual Schedule Schedule { get; set; }
+        [JsonIgnore] public virtual Schedule Schedule { get; set; }
     }
 }
