@@ -204,6 +204,7 @@
     <Compile Include="Models\Player.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlayerentryDTO.cs" />
     <Compile Include="Models\Playerteaminfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -222,6 +223,7 @@
     <Compile Include="Models\venue.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\YourDBcontext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
